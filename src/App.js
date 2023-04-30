@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import SignIn from "./components/SignIn";
+import HomePage from'./components/HomePage';
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    const auth  = useSelector(state => state.auth.isAuthenticated);
+    return (
+        <Fragment >
+          {!auth &&   <SignIn />}
+        {auth && <HomePage />}
+        </Fragment>
+
+    )
 }
 
 export default App;
